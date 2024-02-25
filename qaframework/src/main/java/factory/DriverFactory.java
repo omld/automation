@@ -18,18 +18,20 @@ public class DriverFactory {
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
-        if (webDriver.get() == null){
+        if (webDriver.get() == null) {
             webDriver.set(initializeDriver());
         }
         return webDriver.get();
     }
-    private static WebDriver initializeDriver (){
+
+    private static WebDriver initializeDriver() {
         WebDriver driver = null;
 
-        Drivers  browser = Drivers.valueOf(System.getProperty("browser").toUpperCase());
+        Drivers browser = (System.getProperty("browser") != null) ?
+                Drivers.valueOf(System.getProperty("browser").toUpperCase()) : Drivers.CHROME;
         String browserVersion = System.getProperty("version");
 
-        switch(browser) {
+        switch (browser) {
             case FIREFOX -> {
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
@@ -59,9 +61,11 @@ public class DriverFactory {
         //maximize window once driver us setup
         driver.manage().window().maximize();
         return driver;
-    };
+    }
 
-    public static void  quitDriver(){
+    ;
+
+    public static void quitDriver() {
         webDriver.get().quit();
         webDriver.remove();
     }

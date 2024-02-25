@@ -1,7 +1,7 @@
 @SuccessLogin
 Feature: Heroku Success Login
 
-  @GoodLoginTest
+    @test1 @test2
   Scenario Outline: As a user, I can log into the secure area
     Given I am on the login page
     When I login with <username> and <password>
@@ -9,4 +9,4 @@ Feature: Heroku Success Login
 
     Examples:
       | username | password             | message                        |
-      | tomsmith | SuperSecretPassword! | You logged into a secure area! |
+      | tomsmith | SuperSecretPassword! | You logged into a secure area1! |

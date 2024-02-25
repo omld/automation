@@ -1,7 +1,7 @@
 package pages;
 
 import base.BasePage;
-import factory.DriverFactory;
+import components.Button;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -13,23 +13,30 @@ public class LoginPage extends BasePage {
     private final String loginUrl = "https://the-internet.herokuapp.com/login";
     private final By loginMessageBy = By.id("flash");
 
-    public LoginPage() {
+    private Button loginButton;
+
+    public LoginPage(Button loginButton) {
         super();
+        this.loginButton = loginButton;
     }
 
     public LoginPage sendUserName(String userName) {
-        sendText(this.userNameBy,userName);
+        sendText(this.userNameBy, userName);
         return this;
     }
 
-    public void clickLoginButton () {
-        clickToElement(this.loginButtonBy);
+    public void clickLoginButton() {
+        loginButton.setButtonBy(this.loginButtonBy);
+//        loginButton.clickOnButton(this.loginButtonBy);
+        loginButton.clickOnButton();
+//        clickToElement(this.loginButtonBy);
     }
 
-    public LoginPage sendPassword (String passWord) {
-        sendText(this.passwordBy,passWord);
+    public LoginPage sendPassword(String passWord) {
+        sendText(this.passwordBy, passWord);
         return this;
     }
+
     public void navigateToLoginPage() {
         navigateToUrl(this.loginUrl);
     }

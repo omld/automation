@@ -5,15 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Optional;
 
 import java.time.Duration;
 
-import static factory.DriverFactory.getDriver;
-
 public class BasePage {
 
-    private WebDriverWait wait ;
+    private WebDriverWait wait;
 
     public BasePage() {
     }
@@ -41,7 +38,7 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(by)).click();
     }
 
-    protected String getTextFromElement (By by){
+    protected String getTextFromElement(By by) {
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by)).getText();
     }

@@ -12,14 +12,17 @@ public class LoginStepsTest {
     private LoginPage loginPage;
 
     public LoginStepsTest(LoginPage loginPage) {
-        this.loginPage=loginPage;
+        this.loginPage = loginPage;
     }
 
+
+    @Test
     @Given("^I am on the login page$")
     public void iAmOnTheLoginPage() {
         this.loginPage.navigateToLoginPage();
     }
 
+    @Test
     @When("^I login with (\\w+) and (.+)$")
     public void iLoginWithUsernameAndPassword(String userName, String password) {
         this.loginPage
@@ -29,6 +32,7 @@ public class LoginStepsTest {
 
     }
 
+    @Test
     @Then("^I should see a flash message saying (.*)$")
     public void iShouldSeeAFlashMessageSayingMessage(String message) {
         this.loginPage.validateLoginMessage(message);
