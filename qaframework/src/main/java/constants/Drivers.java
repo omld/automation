@@ -1,4 +1,4 @@
-package com.qa.pom.constants;
+package constants;
 
 
 
